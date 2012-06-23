@@ -48,24 +48,22 @@
 			
 			<article>
 				<header>
-					<h1>Information</h1>
-                    <p>Movie List:</p>
-                    <ul>
-                        {% for movie in movies %}
-                        <li><b>{{ movie[0] }}</b> : {{ movie[1] }}</li>
-                        {% endfor %}
-                    </ul>
+					<h1>Watch a Movie</h1>
+                    <p>Select a movie to watch:</p>
+                    <form action="/watch">
+                        <select name="movie" style='width: 250px;'>
+                            {% for movie in movies %}
+                            <option>{{ movie }}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="submit" value="Submit" />
+                </form>
 				</header>
 			</article>
 			
 			<aside>
-				<h3>Server</h3>
-                <p> <b>Bound IP</b>: {{ ip }} <br \>
-                    <b>Bound Port</b>: {{ port }} <br \>
-                    <b>Server</b>: {{ server }} <br \>
-                    <b>Python Version</b>: {{ python }} <br \>
-                    <b>Flask Version</b>: {{ flask }} <br \>
-                    <b>Serve Dir</b>: {{ root }} <br \>
+				<h3>From Whence?</h3>
+                <p>Serving video files rooted at: <b>'{{ root }}'</b></p>
 			</aside>
 			
 		</div> <!-- #main -->

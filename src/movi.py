@@ -29,6 +29,7 @@ app=Flask(__name__)
 app.debug=True
 
 __movies = dict()
+__root = ''
 
 ### Helper functions ###
 def die(msg):
@@ -61,16 +62,22 @@ def info():
     global __movies
     sorted_movies = sorted(__movies.items())
     server = os.environ.get('SERVER_SOFTWARE', 'Unknown')
-    return render_template('info.html', movies=(sorted_movies),
+    return render_template('info.html', movies=sorted_movies,
                                         ip=HOST,
                                         port=PORT,
                                         server=server,
                                         python=version,
-                                        flask=__version__)
+                                        flask=__version__,
+                                        root=__root)
 
 @app.route('/movies')
 def movies():
-    return 'Show movie form...'
+    global __movies
+    global __root
+
+    sorted_movies = sorted(__movies.keys())
+    return render_template('movies.html', movies=sorted_movies,
+                                          root=__root)
 
 @app.route('/serve/<name>')
 def serve(name=None):
@@ -92,7 +99,8 @@ if __name__ == '__main__':
         print USAGE % (argv[1])
         die('First argument is not a valid directory.')
 
+    __root = argv[1]
   
-    find_movies(argv[1])
+    find_movies(__root)
 
     app.run(host=HOST, port=PORT)
