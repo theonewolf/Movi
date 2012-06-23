@@ -9,11 +9,13 @@
 
 
 ### Imports ###
+from flask import __version__
 from flask import Flask
 from flask import render_template
 
 
 from sys import argv
+from sys import version
 import os 
 
 
@@ -58,7 +60,13 @@ def index():
 def info():
     global __movies
     sorted_movies = sorted(__movies.items())
-    return 'Display configuration and list of videos (%s)' % (str(sorted_movies))
+    server = os.environ.get('SERVER_SOFTWARE', 'Unknown')
+    return render_template('info.html', movies=(sorted_movies),
+                                        ip=HOST,
+                                        port=PORT,
+                                        server=server,
+                                        python=version,
+                                        flask=__version__)
 
 @app.route('/movies')
 def movies():
