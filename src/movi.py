@@ -10,6 +10,7 @@
 
 ### Imports ###
 from flask import Flask
+from flask import render_template
 
 
 from sys import argv
@@ -48,7 +49,7 @@ def find_movies(path):
 ### Routes ###
 @app.route('/')
 def index():
-    return 'Welcome to the movie player.'
+    return render_template('index.html')
 
 @app.route('/info')
 def info():
@@ -56,13 +57,17 @@ def info():
     sorted_movies = sorted(__movies.items())
     return 'Display configuration and list of videos (%s)' % (str(sorted_movies))
 
+@app.route('/movies')
+def movies():
+    return 'Show movie form...'
+
 @app.route('/serve/<name>')
 def serve(name=None):
     return 'Trying to serve: "%s"' % name
 
 
 @app.route('/watch/<name>')
-def serve(name=None)
+def watch(name=None):
     return 'Trying to watch: "%s"' % name
 
 ### Main ###
