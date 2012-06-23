@@ -14,11 +14,14 @@ body { margin: 0; font-size: 1em; line-height: 1.4; }
 ::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
 ::selection { background: #fe57a1; color: #fff; text-shadow: none; }
 
-a { color: #00e; }
+a { color: #00e; text-decoration: none; }
 a:visited { color: #551a8b; }
 a:hover { color: #06e; }
 a:focus { outline: thin dotted; }
 a:hover, a:active { outline: 0; }
+h1 a { text-decoration: none; color:white; margin: 0px; }
+h1 a:hover { color:white; }
+h1 a:visited { color:white; }
 
 abbr[title] { border-bottom: 1px dotted; }
 b, strong { font-weight: bold; }
@@ -118,10 +121,6 @@ nav a{
 
 nav a:hover, nav a:visited{
 	color:white;
-}
-
-nav a:hover{
-	text-decoration:underline;
 }
 
 /* ==============
