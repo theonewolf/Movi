@@ -33,6 +33,9 @@ def die(msg):
     print 'ERROR: %s' % (msg)
     exit(1)
 
+def log_info(msg):
+    print 'INFO: %s' % msg
+
 def find_movies(path):
     global __movies
     for (dirpath, dirnames, filenames) in os.walk(path):
