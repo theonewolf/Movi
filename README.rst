@@ -11,7 +11,7 @@
 -------------------------------------------------------------------------------
 Simple synchronized movie streamer.
 
-Uses Flowplayer and Flask.
+Uses Flask and Initialzr.
 
 
 
