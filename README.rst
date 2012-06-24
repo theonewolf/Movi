@@ -14,8 +14,9 @@ Simple synchronized movie streamer.
 Uses Flask and Initialzr.
 
 This project was created and is maintained by:
-    Wolfgang Richter <wolf@cs.cmu.edu>
-    Debjani Biswas <dbiswas@cmu.edu>
+
+    - Wolfgang Richter <wolf@cs.cmu.edu>
+    - Debjani Biswas <dbiswas@cmu.edu>
 
 
 
