@@ -15,6 +15,10 @@ from flask import render_template
 from flask import request
 from flask import send_file
 
+from tornado.wsgi import WSGIContainer
+from tornado.httpserver import HTTPServer
+from tornado.ioloop import IOLoop
+
 import os 
 from sys import argv
 from sys import version
@@ -108,4 +112,6 @@ if __name__ == '__main__':
   
     find_movies(__root)
 
-    app.run(host=HOST, port=PORT)
+    http_server = HTTPServer(WSGIContainer(app))
+    http_server.listen(PORT)
+    IOLoop.instance().start()
