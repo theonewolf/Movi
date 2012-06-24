@@ -14,6 +14,7 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from flask import send_file
+from flask import send_from_directory
 
 from tornado.wsgi import WSGIContainer
 from tornado.httpserver import HTTPServer
@@ -58,6 +59,11 @@ def find_movies(path):
 
 
 ### Routes ###
+@app.route('/favicon.ico')
+def favicon():
+        return send_from_directory(os.path.join(app.root_path, 'static'),
+                            'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 @app.route('/')
 def index():
     return render_template('index.html')
