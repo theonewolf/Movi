@@ -12,11 +12,12 @@
 from flask import __version__
 from flask import Flask
 from flask import render_template
+from flask import request
+from flask import send_file
 
-
+import os 
 from sys import argv
 from sys import version
-import os 
 
 
 
@@ -79,14 +80,18 @@ def movies():
     return render_template('movies.html', movies=sorted_movies,
                                           root=__root)
 
-@app.route('/serve/<name>')
-def serve(name=None):
-    return 'Trying to serve: "%s"' % name
+@app.route('/serve')
+def serve():
+    path = request.args.get('path')
+    ext = os.path.splitext(path)[1]
+    return send_file(path, mimetype='video/%s' % ext[1:]) 
 
-
-@app.route('/watch/<name>')
-def watch(name=None):
-    return 'Trying to watch: "%s"' % name
+@app.route('/watch')
+def watch():
+    global __movies
+    path = __movies[request.args.get('movie')]
+    ext = os.path.splitext(path)[1][1:]
+    return render_template('watch.html', path=path, type=ext)
 
 ### Main ###
 if __name__ == '__main__':
